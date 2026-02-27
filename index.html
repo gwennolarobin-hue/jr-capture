@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Just Russel — Guide Nutrition Gratuit</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  /* ===== COULEURS JUST RUSSEL OFFICIELLES ===== */
+  :root {
+    --jr-green: #2D6A4F;        /* Vert principal JR */
+    --jr-green-dark: #1B4332;   /* Vert foncé */
+    --jr-green-light: #52B788;  /* Vert clair accent */
+    --jr-green-pale: #D8F3DC;   /* Vert très pâle fond */
+    --jr-orange: #F4803A;       /* Orange CTA JR */
+    --jr-orange-dark: #D9621E;  /* Orange foncé hover */
+    --jr-cream: #FAFAF7;        /* Fond crème JR */
+    --jr-white: #FFFFFF;
+    --jr-text: #1A1A1A;
+    --jr-text-mid: #4A4A4A;
+    --jr-text-light: #7A7A7A;
+    --jr-border: #E8EDE9;
+    --jr-yellow: #FFD166;       /* Accent jaune badge */
+
+    /* Variables dynamiques chien/chat */
+    --animal-emoji: "🐶";
+    --animal-color: var(--jr-green);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito Sans', sans-serif;
+    background: var(--jr-cream);
+    color: var(--jr-text);
+    min-height: 100vh;
+  }
+
+  /* ===== BANNIÈRE TOP ===== */
+  .top-bar {
+    background: var(--jr-green-dark);
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  .top-bar span { color: var(--jr-yellow); }
+
+  /* ===== NAV ===== */
+  nav {
+    background: white;
+    border-bottom: 1px solid var(--jr-border);
+    padding: 16px 0;
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    color: var(--jr-green-dark);
+  }
+
+  .logo span { color: var(--jr-orange); }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--jr-text-mid);
+  }
+
+  .tp-stars { color: #00B67A; font-size: 15px; letter-spacing: 1px; }
+
+  /* ===== HERO ===== */
+  .hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 24px 72px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  /* ===== SÉLECTEUR ANIMAL ===== */
+  .animal-selector {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .animal-btn {
+    flex: 1;
+    padding: 14px 16px;
+    border: 2px solid var(--jr-border);
+    border-radius: 14px;
+    background: white;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--jr-text-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+  }
+
+  .animal-btn .emoji { font-size: 22px; }
+
+  .animal-btn.active {
+    border-color: var(--jr-green);
+    background: var(--jr-green-pale);
+    color: var(--jr-green-dark);
+  }
+
+  .animal-btn:hover:not(.active) {
+    border-color: var(--jr-green-light);
+    background: #f0faf3;
+  }
+
+  /* ===== CONTENU HÉRO ===== */
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--jr-green-pale);
+    border: 1px solid rgba(45, 106, 79, 0.25);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--jr-green);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 20px;
+  }
+
+  .badge-pulse {
+    width: 7px; height: 7px;
+    background: var(--jr-green-light);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(30px, 3.5vw, 44px);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--jr-green-dark);
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+
+  h1 .highlight {
+    color: var(--jr-orange);
+    position: relative;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--jr-text-mid);
+    margin-bottom: 28px;
+  }
+
+  /* ===== CONTENU DYNAMIQUE ===== */
+  .content-dog { display: block; }
+  .content-cat { display: none; }
+  .content-both .content-dog { display: block; }
+
+  body.mode-cat .content-dog { display: none; }
+  body.mode-cat .content-cat { display: block; }
+  body.mode-both .content-dog { display: block; }
+  body.mode-both .content-cat { display: block; }
+
+  /* ===== POINTS CLÉS ===== */
+  .key-points {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .kp-item {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-size: 15px;
+    color: var(--jr-text-mid);
+    font-weight: 600;
+  }
+
+  .kp-icon {
+    width: 24px; height: 24px;
+    background: var(--jr-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .kp-icon svg { width: 12px; height: 12px; fill: white; }
+
+  /* ===== SOCIAL PROOF ===== */
+  .social-strip {
+    display: flex;
+    gap: 24px;
+    padding: 20px 0;
+    border-top: 1px solid var(--jr-border);
+    flex-wrap: wrap;
+  }
+
+  .sp-item { display: flex; align-items: center; gap: 10px; }
+
+  .sp-num {
+    font-family: 'Nunito', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--jr-green);
+    line-height: 1;
+  }
+
+  .sp-label {
+    font-size: 12px;
+    color: var(--jr-text-light);
+    line-height: 1.4;
+    max-width: 72px;
+  }
+
+  .sp-divider { width: 1px; height: 32px; background: var(--jr-border); }
+
+  /* ===== CARTE FORMULAIRE ===== */
+  .form-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 32px rgba(27, 67, 50, 0.12), 0 1px 6px rgba(27, 67, 50, 0.06);
+    overflow: hidden;
+    position: sticky;
+    top: 24px;
+  }
+
+  .form-header {
+    background: linear-gradient(135deg, var(--jr-green-dark), var(--jr-green));
+    padding: 28px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-header::after {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 120px; height: 120px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 50%;
+  }
+
+  .guide-label-top {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 700;
+    color: var(--jr-yellow);
+    margin-bottom: 8px;
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .guide-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: white;
+    line-height: 1.3;
+    margin-bottom: 14px;
+  }
+
+  .guide-contents {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .gc-item {
+    font-size: 12px;
+    color: rgba(255,255,255,0.78);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+  }
+
+  .gc-item::before {
+    content: '→';
+    color: var(--jr-yellow);
+    font-weight: 800;
+  }
+
+  /* ===== FORMULAIRE ===== */
+  .form-body {
+    padding: 28px 32px;
+  }
+
+  .form-intro {
+    font-family: 'Nunito', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--jr-green-dark);
+    margin-bottom: 5px;
+  }
+
+  .form-sub {
+    font-size: 13px;
+    color: var(--jr-text-light);
+    margin-bottom: 22px;
+    line-height: 1.5;
+  }
+
+  .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .input-group { margin-bottom: 14px; }
+
+  .input-group label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--jr-text-mid);
+    margin-bottom: 6px;
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .input-group input, .input-group select {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1.5px solid var(--jr-border);
+    border-radius: 10px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    color: var(--jr-text);
+    background: white;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .input-group input::placeholder { color: #BBBBB8; }
+
+  .input-group input:focus, .input-group select:focus {
+    border-color: var(--jr-green);
+    box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.12);
+  }
+
+  /* Sélecteur animal dans le formulaire */
+  .form-animal-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .fan-btn {
+    padding: 10px 8px;
+    border: 1.5px solid var(--jr-border);
+    border-radius: 10px;
+    background: white;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--jr-text-mid);
+    text-align: center;
+    transition: all 0.2s;
+  }
+
+  .fan-btn .fan-emoji { display: block; font-size: 20px; margin-bottom: 3px; }
+  .fan-btn.active { border-color: var(--jr-green); background: var(--jr-green-pale); color: var(--jr-green-dark); }
+  .fan-btn:hover:not(.active) { border-color: var(--jr-green-light); }
+
+  .fan-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 700;
+    color: var(--jr-text-mid);
+    margin-bottom: 8px;
+    font-family: 'Nunito', sans-serif;
+  }
+
+  /* ===== BOUTON CTA ===== */
+  .cta-btn {
+    width: 100%;
+    padding: 16px 20px;
+    background: var(--jr-orange);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 16px rgba(244, 128, 58, 0.4);
+    letter-spacing: 0.2px;
+    margin-top: 4px;
+  }
+
+  .cta-btn:hover { background: var(--jr-orange-dark); transform: translateY(-1px); box-shadow: 0 6px 22px rgba(244, 128, 58, 0.5); }
+  .cta-btn:active { transform: translateY(0); }
+
+  .form-reassurance {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--jr-text-light);
+    margin-top: 12px;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* ===== TESTIMONIALS ===== */
+  .testi-section {
+    background: white;
+    padding: 64px 0;
+    border-top: 1px solid var(--jr-border);
+    border-bottom: 1px solid var(--jr-border);
+  }
+
+  .section-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  .section-kicker {
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--jr-green);
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(22px, 2.8vw, 30px);
+    font-weight: 800;
+    text-align: center;
+    color: var(--jr-green-dark);
+    margin-bottom: 44px;
+  }
+
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+  .testi-card {
+    border: 1.5px solid var(--jr-border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+
+  .testi-card:hover { box-shadow: 0 8px 24px rgba(27, 67, 50, 0.1); transform: translateY(-3px); }
+
+  .testi-stars { color: #00B67A; font-size: 14px; letter-spacing: 2px; margin-bottom: 12px; }
+
+  .testi-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--jr-text-mid);
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+
+  .testi-author { display: flex; align-items: center; gap: 10px; }
+
+  .testi-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--jr-green-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+
+  .testi-name { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 13px; color: var(--jr-green-dark); }
+  .testi-pet { font-size: 11px; color: var(--jr-text-light); }
+
+  /* ===== SECTION TRANSPARENCE ===== */
+  .transparency {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 72px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .trans-h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(24px, 2.8vw, 34px);
+    font-weight: 800;
+    color: var(--jr-green-dark);
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+
+  .trans-h2 span { color: var(--jr-orange); }
+
+  .trans-p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--jr-text-mid);
+    margin-bottom: 28px;
+  }
+
+  .trans-points { display: flex; flex-direction: column; gap: 18px; }
+
+  .tp-row { display: flex; gap: 14px; align-items: flex-start; }
+
+  .tp-icon-box {
+    width: 42px; height: 42px;
+    border-radius: 12px;
+    background: var(--jr-green-pale);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .tp-text h4 { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 14px; color: var(--jr-green-dark); margin-bottom: 3px; }
+  .tp-text p { font-size: 13px; color: var(--jr-text-mid); line-height: 1.6; }
+
+  /* ===== CARTE ABONNEMENT ===== */
+  .sub-card {
+    background: var(--jr-green-dark);
+    border-radius: 20px;
+    padding: 36px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sub-card::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 180px; height: 180px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+
+  .sub-badge-pill {
+    display: inline-block;
+    background: var(--jr-yellow);
+    color: var(--jr-green-dark);
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 14px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 18px;
+  }
+
+  .sub-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .sub-desc { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 24px; }
+
+  .sub-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+
+  .sub-li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13px; color: rgba(255,255,255,0.85); line-height: 1.5;
+    font-weight: 600; font-family: 'Nunito', sans-serif;
+  }
+
+  .sub-check {
+    width: 20px; height: 20px;
+    background: var(--jr-green-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 10px; font-weight: 700;
+  }
+
+  .sub-cta-btn {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    background: var(--jr-orange);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  }
+
+  .sub-cta-btn:hover { background: var(--jr-orange-dark); transform: translateY(-1px); }
+
+  .sub-note {
+    margin-top: 12px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  /* ===== SUCCESS STATE ===== */
+  .success-state {
+    display: none;
+    text-align: center;
+    padding: 24px 0;
+  }
+
+  .success-icon {
+    width: 60px; height: 60px;
+    background: var(--jr-green-pale);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 28px;
+  }
+
+  .success-state h3 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--jr-green-dark);
+    margin-bottom: 8px;
+  }
+
+  .success-state p { font-size: 14px; color: var(--jr-text-mid); line-height: 1.6; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--jr-green-dark);
+    padding: 32px 0;
+    text-align: center;
+  }
+
+  .footer-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  .footer-logo {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: white;
+    margin-bottom: 10px;
+  }
+
+  .footer-logo span { color: var(--jr-yellow); }
+
+  .footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
+  .footer-links a { font-size: 12px; color: rgba(255,255,255,0.5); text-decoration: none; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .anim { opacity: 0; animation: fadeUp 0.6s ease forwards; }
+  .anim-1 { animation-delay: 0.05s; }
+  .anim-2 { animation-delay: 0.15s; }
+  .anim-3 { animation-delay: 0.25s; }
+  .anim-4 { animation-delay: 0.35s; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; gap: 40px; padding: 40px 20px 60px; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .transparency { grid-template-columns: 1fr; gap: 40px; padding: 48px 20px; }
+    .form-card { position: static; }
+    .social-strip { gap: 16px; justify-content: center; }
+    .input-row { grid-template-columns: 1fr; }
+    .animal-selector { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  🎂 Just Russel fête ses 6 ans ! <span>40% de réduction</span> sur votre première commande — Code : <span>6ANS-JR</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Just <span>Russel</span></div>
+    <div class="nav-right">
+      <span class="tp-stars">★★★★★</span>
+      <span>4,8/5 · 10 261 avis Trustpilot</span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+
+  <!-- COLONNE GAUCHE -->
+  <div>
+    <!-- SÉLECTEUR ANIMAL -->
+    <div style="margin-bottom:28px;">
+      <p style="font-family:'Nunito',sans-serif; font-weight:700; font-size:13px; color:var(--jr-text-mid); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px;">Vous avez...</p>
+      <div class="animal-selector">
+        <button class="animal-btn active" onclick="setAnimal('dog')" id="btn-dog">
+          <span class="emoji">🐶</span> Un chien
+        </button>
+        <button class="animal-btn" onclick="setAnimal('cat')" id="btn-cat">
+          <span class="emoji">🐱</span> Un chat
+        </button>
+        <button class="animal-btn" onclick="setAnimal('both')" id="btn-both">
+          <span class="emoji">🐾</span> Les deux
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-badge anim anim-1">
+      <span class="badge-pulse"></span>
+      Guide offert · Téléchargement immédiat
+    </div>
+
+    <h1 class="anim anim-2">
+      <span class="content-dog">Les <span class="highlight">5 erreurs</span> qui fatiguent votre chien sans que vous le sachiez</span>
+      <span class="content-cat" style="display:none;">Les <span class="highlight">5 erreurs</span> qui fatiguent votre chat sans que vous le sachiez</span>
+    </h1>
+
+    <p class="hero-sub anim anim-3">
+      <span class="content-dog">Un guide clair, rédigé avec nos vétérinaires, pour comprendre ce qui se cache vraiment dans l'assiette de votre chien — et comment choisir sereinement.</span>
+      <span class="content-cat" style="display:none;">Un guide clair, rédigé avec nos vétérinaires, pour comprendre ce qui se cache vraiment dans l'assiette de votre chat — et comment choisir sereinement.</span>
+    </p>
+
+    <div class="key-points anim anim-4">
+      <div class="kp-item">
+        <div class="kp-icon"><svg viewBox="0 0 12 10"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+        <span class="content-dog">L'ingrédient n°1 qui trompe 9 propriétaires de chiens sur 10</span>
+        <span class="content-cat" style="display:none;">L'ingrédient n°1 qui trompe 9 propriétaires de chats sur 10</span>
+      </div>
+      <div class="kp-item">
+        <div class="kp-icon"><svg viewBox="0 0 12 10"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+        <span>Pourquoi "naturel" ne veut rien dire légalement</span>
+      </div>
+      <div class="kp-item">
+        <div class="kp-icon"><svg viewBox="0 0 12 10"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+        <span>Les vraies questions à poser avant toute commande de croquettes sur-mesure</span>
+      </div>
+      <div class="kp-item">
+        <div class="kp-icon"><svg viewBox="0 0 12 10"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+        <span>Sans engagement. Sans abonnement caché. Promis.</span>
+      </div>
+    </div>
+
+    <div class="social-strip anim anim-4">
+      <div class="sp-item">
+        <div class="sp-num">100k+</div>
+        <div class="sp-label">familles satisfaites</div>
+      </div>
+      <div class="sp-divider"></div>
+      <div class="sp-item">
+        <div class="sp-num">4,8</div>
+        <div class="sp-label">sur 5 Trustpilot</div>
+      </div>
+      <div class="sp-divider"></div>
+      <div class="sp-item">
+        <div class="sp-num">42M</div>
+        <div class="sp-label">repas livrés</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLONNE DROITE : FORMULAIRE -->
+  <div class="form-card">
+    <div class="form-header">
+      <div class="guide-label-top">📘 Votre guide offert</div>
+      <div class="guide-title" id="guide-title">Les 5 erreurs cachées dans l'alimentation de votre chien</div>
+      <div class="guide-contents" id="guide-contents">
+        <div class="gc-item">L'ingrédient n°1 qui cache tout le reste</div>
+        <div class="gc-item">Pourquoi "naturel" ne signifie rien</div>
+        <div class="gc-item">Comment déchiffrer une composition</div>
+        <div class="gc-item">Le vrai test pour savoir si ça lui convient</div>
+      </div>
+    </div>
+
+    <div class="form-body">
+      <div id="formContent">
+        <div class="form-intro">Recevez-le maintenant</div>
+        <div class="form-sub">Gratuit, immédiat, sans piège. Adapté à votre animal.</div>
+
+        <div class="fan-label">Votre animal est...</div>
+        <div class="form-animal-selector">
+          <button class="fan-btn active" onclick="setAnimalForm('dog')" id="fan-dog">
+            <span class="fan-emoji">🐶</span>Un chien
+          </button>
+          <button class="fan-btn" onclick="setAnimalForm('cat')" id="fan-cat">
+            <span class="fan-emoji">🐱</span>Un chat
+          </button>
+          <button class="fan-btn" onclick="setAnimalForm('both')" id="fan-both">
+            <span class="fan-emoji">🐾</span>Les deux
+          </button>
+        </div>
+
+        <div class="input-row">
+          <div class="input-group">
+            <label>Votre prénom</label>
+            <input type="text" id="prenom" placeholder="Sophie">
+          </div>
+          <div class="input-group">
+            <label id="animal-label">Prénom de votre chien</label>
+            <input type="text" id="animal-name" placeholder="Milo">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Votre e-mail</label>
+          <input type="email" id="email" placeholder="sophie@exemple.com">
+        </div>
+
+        <button class="cta-btn" id="cta-btn" onclick="handleSubmit()">
+          Envoyer le guide gratuit →
+        </button>
+
+        <div class="form-reassurance">
+          🔒 Pas de spam. Désincription en 1 clic. RGPD respecté.
+        </div>
+      </div>
+
+      <div class="success-state" id="successState">
+        <div class="success-icon">🎉</div>
+        <h3 id="success-title">C'est parti !</h3>
+        <p id="success-msg">Votre guide arrive dans votre boîte mail dans quelques secondes. Vérifiez vos spams si besoin.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="testi-section">
+  <div class="section-inner">
+    <div class="section-kicker">Ce que disent nos familles</div>
+    <div class="section-title">Des résultats visibles. Des maîtres soulagés.</div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"J'avais peur de l'abonnement. Mais tout est clair, modifiable en 2 clics. Et Luna adore ses croquettes depuis 8 mois. Son pelage est méconnaissable."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">🐕</div>
+          <div>
+            <div class="testi-name">Camille D.</div>
+            <div class="testi-pet">Maman de Luna, Labrador 4 ans</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"Mon chat stérilisé a retrouvé sa forme en 3 semaines. Et les ingrédients sont vraiment transparents — j'ai comparé avec les grandes marques, il n'y a pas photo."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">🐈</div>
+          <div>
+            <div class="testi-name">Pierre-Antoine L.</div>
+            <div class="testi-pet">Papa de Mochi, chat 6 ans</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"J'utilise les produits depuis septembre. Très bonne qualité, je vois une amélioration sur la peau et les poils de mes chiens, surtout ma vieille labrador de 13 ans."</div>
+        <div class="testi-author">
+          <div class="testi-avatar">🦮</div>
+          <div>
+            <div class="testi-name">Emily A.</div>
+            <div class="testi-pet">Maman de 2 chiens</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRANSPARENCE -->
+<div style="background: var(--jr-cream);">
+  <div class="transparency">
+    <div>
+      <div class="section-kicker" style="text-align:left; margin-bottom:10px;">Soyons honnêtes</div>
+      <h2 class="trans-h2">Un abonnement, oui.<br><span>Mais pas comme vous croyez.</span></h2>
+      <p class="trans-p">On a entendu les doutes. Plutôt que de l'écrire en tout petit en bas de page, on préfère vous l'expliquer clairement ici.</p>
+      <div class="trans-points">
+        <div class="tp-row">
+          <div class="tp-icon-box">📦</div>
+          <div class="tp-text">
+            <h4>Livraison automatique — pas livraison forcée</h4>
+            <p>Vous recevez une alerte 7 jours avant chaque envoi. Vous modifiez, reportez ou annulez en 1 clic. Toujours.</p>
+          </div>
+        </div>
+        <div class="tp-row">
+          <div class="tp-icon-box">🔓</div>
+          <div class="tp-text">
+            <h4>Sans engagement, sans frais d'annulation</h4>
+            <p>Pas de durée minimale. Vous restez parce que votre animal adore — pas parce qu'on vous y oblige.</p>
+          </div>
+        </div>
+        <div class="tp-row">
+          <div class="tp-icon-box">💬</div>
+          <div class="tp-text">
+            <h4>Un humain répond — pas un bot</h4>
+            <p>Notre équipe répond du lundi au vendredi, 9h-17h. Par mail, par chat. Sur les vraies questions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-card">
+      <div class="sub-badge-pill">✦ Comment ça marche</div>
+      <div class="sub-title">Simple. Transparent.<br>Modifiable à tout moment.</div>
+      <div class="sub-desc">Exactement ce que vous signez quand vous commandez chez Just Russel :</div>
+      <div class="sub-list">
+        <div class="sub-li"><div class="sub-check">✓</div><span>Questionnaire de 4 minutes sur votre animal</span></div>
+        <div class="sub-li"><div class="sub-check">✓</div><span>Recette sur-mesure par nos vétérinaires</span></div>
+        <div class="sub-li"><div class="sub-check">✓</div><span>Livraison gratuite — vous choisissez la fréquence</span></div>
+        <div class="sub-li"><div class="sub-check">✓</div><span>Modification ou annulation à tout moment</span></div>
+        <div class="sub-li"><div class="sub-check">✓</div><span>Satisfait ou remboursé 100% — première commande</span></div>
+        <div class="sub-li"><div class="sub-check">✓</div><span>Alerte email 7 jours avant chaque renouvellement</span></div>
+      </div>
+      <button class="sub-cta-btn">Commencer le questionnaire gratuit →</button>
+      <div class="sub-note">Aucun engagement minimum. Aucun frais caché. Vous pouvez annuler avant chaque livraison.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Just <span>Russel</span></div>
+    <div class="footer-links">
+      <a href="#">Mentions légales</a>
+      <a href="#">Politique de confidentialité</a>
+      <a href="#">Gérer mon abonnement</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 Just Russel · Alimentation naturelle personnalisée pour chiens et chats</div>
+  </div>
+</footer>
+
+<script>
+  let currentAnimal = 'dog';
+
+  const texts = {
+    dog: {
+      h1: 'Les <span class="highlight">5 erreurs</span> qui fatiguent votre chien sans que vous le sachiez',
+      sub: "Un guide clair, rédigé avec nos vétérinaires, pour comprendre ce qui se cache vraiment dans l'assiette de votre chien — et comment choisir sereinement.",
+      guideTitle: "Les 5 erreurs cachées dans l'alimentation de votre chien",
+      kp1: "L'ingrédient n°1 qui trompe 9 propriétaires de chiens sur 10",
+      animalLabel: "Prénom de votre chien",
+      animalPlaceholder: "Milo",
+      ctaEmoji: "🐶",
+      successTitle: "C'est parti !",
+      successMsg: "Votre guide chien arrive dans votre boîte mail dans quelques secondes."
+    },
+    cat: {
+      h1: 'Les <span class="highlight">5 erreurs</span> qui fatiguent votre chat sans que vous le sachiez',
+      sub: "Un guide clair, rédigé avec nos vétérinaires, pour comprendre ce qui se cache vraiment dans l'assiette de votre chat — et comment choisir sereinement.",
+      guideTitle: "Les 5 erreurs cachées dans l'alimentation de votre chat",
+      kp1: "L'ingrédient n°1 qui trompe 9 propriétaires de chats sur 10",
+      animalLabel: "Prénom de votre chat",
+      animalPlaceholder: "Luna",
+      ctaEmoji: "🐱",
+      successTitle: "C'est parti !",
+      successMsg: "Votre guide chat arrive dans votre boîte mail dans quelques secondes."
+    },
+    both: {
+      h1: 'Les <span class="highlight">5 erreurs</span> qui fatiguent vos animaux sans que vous le sachiez',
+      sub: "Un guide double (chien & chat), rédigé avec nos vétérinaires, pour comprendre ce qui se cache vraiment dans leurs assiettes.",
+      guideTitle: "Guide double : les 5 erreurs pour votre chien ET votre chat",
+      kp1: "Les différences clés entre alimentation chien et chat",
+      animalLabel: "Prénom de vos animaux",
+      animalPlaceholder: "Milo & Luna",
+      ctaEmoji: "🐾",
+      successTitle: "Double guide en route !",
+      successMsg: "Votre guide chien ET chat arrivent dans votre boîte mail. Vérifiez vos spams si besoin."
+    }
+  };
+
+  function setAnimal(type) {
+    currentAnimal = type;
+    const t = texts[type];
+
+    // Boutons hero
+    ['dog','cat','both'].forEach(a => document.getElementById('btn-'+a).classList.remove('active'));
+    document.getElementById('btn-'+type).classList.add('active');
+
+    // Boutons formulaire
+    ['dog','cat','both'].forEach(a => document.getElementById('fan-'+a).classList.remove('active'));
+    document.getElementById('fan-'+type).classList.add('active');
+
+    // Mise à jour textes
+    document.querySelector('h1').innerHTML = t.h1;
+    document.querySelector('.hero-sub').textContent = t.sub;
+    document.getElementById('guide-title').textContent = t.guideTitle;
+    document.querySelector('.key-points .kp-item:first-child span').textContent = t.kp1;
+    document.getElementById('animal-label').textContent = t.animalLabel;
+    document.getElementById('animal-name').placeholder = t.animalPlaceholder;
+    document.getElementById('cta-btn').textContent = `${t.ctaEmoji} Envoyer le guide gratuit →`;
+  }
+
+  function setAnimalForm(type) {
+    setAnimal(type);
+  }
+
+  function handleSubmit() {
+    const prenom = document.getElementById('prenom').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    if (!prenom) {
+      const el = document.getElementById('prenom');
+      el.style.borderColor = 'var(--jr-orange)';
+      el.focus();
+      return;
+    }
+    if (!email || !email.includes('@')) {
+      const el = document.getElementById('email');
+      el.style.borderColor = 'var(--jr-orange)';
+      el.focus();
+      return;
+    }
+
+    const t = texts[currentAnimal];
+    document.getElementById('formContent').style.display = 'none';
+    const success = document.getElementById('successState');
+    success.style.display = 'block';
+    document.getElementById('success-title').textContent = `C'est parti, ${prenom} ! ${t.ctaEmoji}`;
+    document.getElementById('success-msg').textContent = t.successMsg;
+  }
+
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.testi-card, .tp-row').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    obs.observe(el);
+  });
+</script>
+</body>
+</html>
